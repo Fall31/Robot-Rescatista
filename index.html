@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control de Carrito Explorador</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">    <link rel="stylesheet" href="css/styles_new.css">
+    <link rel="stylesheet" href="css/particles.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/controls-effects.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <header class="mb-4">
+            <h1 class="text-center py-3">Panel de Control del Carrito Explorador</h1>
+        </header>
+
+        <div class="row main-content">
+            <!-- Columna izquierda: Video y controles -->
+            <div class="col-lg-7 mb-4">
+                <div class="card mb-4 bg-dark text-white border-primary">
+                    <div class="card-header bg-primary">
+                        <h2 class="card-title mb-0">
+                        <i class="fas fa-video me-2"></i> Vista en Tiempo Real
+                        </h2>
+                    </div>
+                    <div class="card-body">
+                        <!-- Contenedor exclusivo para el video -->
+                        <div id="videoContainer">
+                        <div id="videoPlaceholder" class="text-center p-4">
+                            <span class="record-indicator" id="recordIndicator">REC</span>
+                            <div class="mt-4">
+                            <i class="fas fa-video fa-4x text-primary mb-3"></i>
+                            <p class="text-info mt-2">Conectando a la cámara...</p>
+                            </div>
+                        </div>
+                        <!-- Aquí se cargará el stream de video -->
+                        </div>
+
+                        <!-- Contenedor separado para los controles de configuración -->
+                        <div class="camera-config">
+                        <div class="row">
+                            <div class="col-md-6">
+                            <div class="form-group mb-3">
+                                <label for="cameraIP" class="form-label">IP de la cámara:</label>
+                                <div class="input-group">
+                                <input type="text" class="form-control" id="cameraIP" placeholder="Ej: 192.168.1.100">
+                                <button class="btn btn-primary" id="connectBtn">Conectar</button>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="col-md-6">
+                            <div class="form-group mb-3">
+                                <label for="resolution" class="form-label">Resolución:</label>
+                                <select class="form-select" id="resolution">
+                                <option selected>800x600 (SVGA)</option>
+                                <option>640x480 (VGA)</option>
+                                <option>320x240 (QVGA)</option>
+                                </select>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-6">
+                            <button class="btn btn-info mb-2" id="flashBtn">
+                                <i class="fas fa-bolt me-1"></i> Encender Flash
+                            </button>
+                            </div>
+                            <div class="col-md-6">
+                            <button class="btn btn-primary mb-2" id="captureBtn">
+                                <i class="fas fa-camera me-1"></i> Tomar Foto
+                            </button>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>                <!-- Sección de Controles con estructura de 3 columnas x 3 filas -->
+                <div class="card mb-4 bg-dark text-white border-0">
+                    <div class="card-header bg-dark border-0">
+                        <h5 class="mb-0">Controles</h5>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="bg-dark p-0">
+                            <!-- Contenedor de control con grid para mantener las 3 columnas x 3 filas -->
+                            <div class="control-grid-container">
+                                <!-- FILA 1 - COLUMNA 1 (Arriba izquierda) -->
+                                <div class="control-cell" style="grid-column: 1; grid-row: 1;">
+                                    <button id="forwardBtn" class="control-btn direction-btn">
+                                        <i class="fas fa-arrow-up"></i>
+                                    </button>
+                                </div>
+                                
+                                <!-- FILA 1 - COLUMNA 2 (Arriba centro) - Vacío -->
+                                <div style="grid-column: 2; grid-row: 1;"></div>
+                                
+                                <!-- FILA 1 - COLUMNA 3 (Arriba derecha) - Vacío -->
+                                <div style="grid-column: 3; grid-row: 1;"></div>
+                                
+                                <!-- FILA 2 - COLUMNA 1 (Centro izquierda) -->
+                                <div class="control-cell" style="grid-column: 1; grid-row: 2;">
+                                    <button id="leftBtn" class="control-btn direction-btn">
+                                        <i class="fas fa-arrow-left"></i>
+                                    </button>
+                                </div>
+                                
+                                <!-- FILA 2 - COLUMNA 2 (Centro centro) -->
+                                <div class="control-cell" style="grid-column: 2; grid-row: 2;">
+                                    <button id="stopBtn" class="control-btn stop-btn">
+                                        <i class="fas fa-square"></i>
+                                    </button>
+                                </div>
+                                
+                                <!-- FILA 2 - COLUMNA 3 (Centro derecha) -->
+                                <div class="control-cell" style="grid-column: 3; grid-row: 2;">
+                                    <button id="rightBtn" class="control-btn direction-btn">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                </div>
+                                
+                                <!-- FILA 3 - COLUMNA 1 (Abajo izquierda) -->
+                                <div class="control-cell" style="grid-column: 1; grid-row: 3;">
+                                    <button id="backwardBtn" class="control-btn direction-btn">
+                                        <i class="fas fa-arrow-down"></i>
+                                    </button>
+                                </div>
+                                
+                                <!-- FILA 3 - COLUMNA 2 (Abajo centro) - Vacío -->
+                                <div style="grid-column: 2; grid-row: 3;"></div>
+                                
+                                <!-- FILA 3 - COLUMNA 3 (Abajo derecha) - Vacío -->
+                                <div style="grid-column: 3; grid-row: 3;"></div>
+                            </div>
+                            
+                            <!-- Control de velocidad con clases CSS en lugar de estilos inline -->
+                            <div class="speed-control-container">
+                                <div class="speed-label">
+                                    Velocidad: <span id="speedValue">50%</span>
+                                </div>
+                                <input type="range" class="form-range" min="0" max="100" value="50" id="speedControl">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Columna derecha: Sensores y Audio -->
+            <div class="col-lg-5">
+                <!-- Panel de sensores -->
+                <div class="card mb-4">
+                    <div class="card-header bg-dark text-white">
+                        <h2 class="card-title"><i class="fas fa-microchip text-orange"></i> Sensores</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <div class="sensor-card">
+                                    <div class="sensor-icon"><i class="fas fa-temperature-high fa-2x"></i></div>
+                                    <h4>Temperatura</h4>
+                                    <div class="sensor-value" id="temperatureValue">25°C</div>
+                                    <div class="sensor-scale">
+                                        <div class="scale-bar temperature-scale"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="sensor-card">
+                                    <div class="sensor-icon"><i class="fas fa-tint fa-2x"></i></div>
+                                    <h4>Humedad</h4>
+                                    <div class="sensor-value" id="humidityValue">60%</div>
+                                    <div class="sensor-scale">
+                                        <div class="scale-bar humidity-scale"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="sensor-card">
+                                    <div class="sensor-icon"><i class="fas fa-smog fa-2x"></i></div>
+                                    <h4>Humo</h4>
+                                    <div class="sensor-value" id="smokeValue">Normal</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="sensor-card">
+                                    <div class="sensor-icon"><i class="fas fa-cloud-rain fa-2x"></i></div>
+                                    <h4>Lluvia</h4>
+                                    <div class="sensor-value" id="rainValue">No detectada</div>
+                                </div>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <div class="sensor-card proximity-card">
+                                    <div class="proximity-header">
+                                        <div class="proximity-icon">
+                                            <i class="fas fa-ruler-combined"></i>
+                                        </div>
+                                        <h4>PROXIMIDAD</h4>
+                                    </div>
+                                    <div class="proximity-container">
+                                        <div class="radar-display">
+                                            <div class="radar-sweep"></div>
+                                            <div class="radar-object" id="radarObject"></div>
+                                            <div class="radar-static-object" id="radarStaticObject"></div>
+                                        </div>
+                                        <div class="proximity-bar-container">
+                                            <div class="proximity-bar" id="proximityBar"></div>
+                                        </div>
+                                        <div class="proximity-value" id="proximityValue">73 cm</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Panel de audio -->
+                <div class="card mb-4">
+                    <div class="card-header bg-dark text-white">
+                        <h2 class="card-title"><i class="fas fa-microphone text-orange"></i> Audio</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="car-model-container mb-4">
+                            <h4 class="sound-title">Detección de Sonido</h4>
+                            <div class="sound-detection-panel">
+                                <div class="car-model-display">
+                                    <div class="car-outline">
+                                        <div id="micFront" class="mic-point" style="top: -12px; left: 50%; transform: translateX(-50%);" data-active="false">
+                                            <i class="fas fa-microphone"></i>
+                                        </div>
+                                        <div id="micRight" class="mic-point" style="top: 50%; right: -12px; transform: translateY(-50%);" data-active="false">
+                                            <i class="fas fa-microphone"></i>
+                                        </div>
+                                        <div id="micBack" class="mic-point" style="bottom: -12px; left: 50%; transform: translateX(-50%);" data-active="false">
+                                            <i class="fas fa-microphone"></i>
+                                        </div>
+                                        <div id="micLeft" class="mic-point" style="top: 50%; left: -12px; transform: translateY(-50%);" data-active="false">
+                                            <i class="fas fa-microphone"></i>
+                                        </div>
+                                        <div class="car-icon-container">
+                                            <i class="fas fa-car-side car-icon"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="audio-control">
+                            <h4>Control de Audio</h4>
+                            <div class="audio-buttons mb-3">
+                                <button id="audioStart" class="btn btn-orange"><i class="fas fa-play"></i> Escuchar</button>
+                                <button id="audioStop" class="btn btn-dark"><i class="fas fa-stop"></i> Detener</button>
+                                <button id="audioMute" class="btn btn-outline-orange"><i class="fas fa-volume-mute"></i> Silenciar</button>
+                            </div>
+                            <div class="audio-volume">
+                                <label for="volumeRange" class="form-label">Volumen: <span id="volumeValue">70</span>%</label>
+                                <input type="range" class="form-range" min="0" max="100" step="1" id="volumeRange" value="70">
+                            </div>
+                            <div class="mic-toggles mt-3">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="toggleMicFront" checked>
+                                    <label class="form-check-label" for="toggleMicFront">Micrófono Frontal</label>
+                                </div>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="toggleMicRight" checked>
+                                    <label class="form-check-label" for="toggleMicRight">Micrófono Derecho</label>
+                                </div>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="toggleMicBack" checked>
+                                    <label class="form-check-label" for="toggleMicBack">Micrófono Trasero</label>
+                                </div>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="toggleMicLeft" checked>
+                                    <label class="form-check-label" for="toggleMicLeft">Micrófono Izquierdo</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Panel de datos históricos -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card mb-4">
+                    <div class="card-header bg-dark text-white">
+                        <h2 class="card-title"><i class="fas fa-chart-line text-orange"></i> Historial de Datos</h2>
+                        <button class="btn btn-sm btn-outline-orange float-end" id="toggleHistory">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="card-body history-panel">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <canvas id="temperatureChart"></canvas>
+                            </div>
+                            <div class="col-md-6">
+                                <canvas id="humidityChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="text-center py-3 mt-4 bg-dark text-white">
+        <p>Carrito Explorador IoT <span class="text-orange">© 2025</span></p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/fix-error.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/particles.js"></script>
+    
+</body>
+</html>

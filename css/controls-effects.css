@@ -1,0 +1,229 @@
+/* Estilos para contenedor del panel de control */
+.control-grid-container {
+    width: 240px;
+    height: 240px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 0;
+    position: relative;
+    background-color: #212121;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    padding: 5px;
+}
+
+/* Estilos para los botones de control */
+.control-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    transition: all 0.2s ease;
+}
+
+/* Color para botones de dirección */
+.direction-btn {
+    background-color: #0275d8;
+    color: white;
+}
+
+/* Color para el botón de parada */
+.stop-btn {
+    background-color: #e74c3c;
+    color: white;
+}
+
+/* Efecto al pasar el mouse */
+.control-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 12px rgba(0, 174, 239, 0.7);
+    transition: all 0.2s ease;
+}
+
+/* Efecto al hacer clic */
+.control-btn:active {
+    transform: scale(0.95);
+    opacity: 0.8;
+    transition: all 0.1s ease;
+}
+
+/* Gradientes para botones direccionales */
+.direction-btn {
+    background: linear-gradient(145deg, #0275d8, #0156a0);
+    color: white;
+}
+
+/* Gradiente para botón de parada */
+.stop-btn {
+    background: linear-gradient(145deg, #e74c3c, #c0392b);
+    color: white;
+}
+
+/* Celda para centrar el botón */
+.control-cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Estilos para el control deslizante de velocidad */
+.speed-control-container {
+    background-color: #212121;
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+.speed-label {
+    color: #00a7e1;
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+/* Estilizado del slider mejorado */
+.form-range {
+    cursor: pointer;
+    height: 4px; /* Reduce la altura del elemento range completo */
+    margin: 12px 0;
+}
+
+/* Apariencia del "thumb" (control deslizante) */
+.form-range::-webkit-slider-thumb {
+    appearance: none;
+    background: linear-gradient(145deg, #00a7e1, #0089b8);
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 5px rgba(0, 167, 225, 0.5);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.form-range::-moz-range-thumb {
+    appearance: none;
+    background: linear-gradient(145deg, #00a7e1, #0089b8);
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 5px rgba(0, 167, 225, 0.5);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+/* Efecto hover en el thumb */
+.form-range::-webkit-slider-thumb:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 8px rgba(0, 167, 225, 0.8);
+}
+
+.form-range::-moz-range-thumb:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 8px rgba(0, 167, 225, 0.8);
+}
+
+/* Track del slider (barra de progreso) */
+.form-range::-webkit-slider-runnable-track {
+    height: 4px;
+    background: linear-gradient(to right, rgba(0, 167, 225, 0.2), rgba(0, 167, 225, 0.6));
+    border-radius: 2px;
+}
+
+.form-range::-moz-range-track {
+    height: 4px;
+    background: linear-gradient(to right, rgba(0, 167, 225, 0.2), rgba(0, 167, 225, 0.6));
+    border-radius: 2px;
+}
+
+/* Estilos responsivos mejorados */
+@media (max-width: 992px) {
+    .control-grid-container {
+        width: 220px;
+        height: 220px;
+    }
+    
+    .control-btn {
+        width: 55px;
+        height: 55px;
+    }
+    
+    .control-btn i {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 767px) {
+    .control-grid-container {
+        width: 210px;
+        height: 210px;
+    }
+    
+    .control-btn {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .control-btn i {
+        font-size: 16px;
+    }
+    
+    .form-range::-webkit-slider-thumb {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .form-range::-moz-range-thumb {
+        width: 16px;
+        height: 16px;
+    }
+}
+
+@media (max-width: 576px) {
+    .control-grid-container {
+        width: 180px;
+        height: 180px;
+    }
+    
+    .control-btn {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .control-btn i {
+        font-size: 14px;
+    }
+    
+    .speed-control-container {
+        padding: 10px;
+        margin-top: 15px;
+    }
+    
+    .speed-label {
+        font-size: 12px;
+    }
+}
+
+/* Soporte para pantallas muy pequeñas */
+@media (max-width: 320px) {
+    .control-grid-container {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .control-btn {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .control-btn i {
+        font-size: 12px;
+    }
+}
