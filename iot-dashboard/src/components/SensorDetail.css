@@ -1,0 +1,359 @@
+.sensor-detail-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+  z-index: 1001;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.sensor-detail-container {
+  background-color: var(--color-light);
+  border-radius: 16px;
+  width: 90%;
+  max-width: 900px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  position: relative;
+  padding: 2rem;
+  animation: slideIn 0.3s ease-out;
+}
+
+.close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  line-height: 1;
+  color: var(--color-text);
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.close-button:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  transform: rotate(90deg);
+}
+
+.sensor-detail-header {
+  margin-bottom: 2rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding-bottom: 1rem;
+}
+
+.detail-title-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.detail-title-group h2 {
+  margin: 0;
+  font-size: 1.8rem;
+  color: var(--color-text);
+}
+
+.detail-status {
+  padding: 0.3rem 0.8rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.status-normal {
+  background-color: var(--color-secondary);
+  color: white;
+}
+
+.status-warning {
+  background-color: var(--color-warning);
+  color: white;
+}
+
+.status-critical {
+  background-color: var(--color-accent);
+  color: white;
+  animation: pulse 1.5s infinite;
+}
+
+.detail-location {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  color: var(--color-text);
+  opacity: 0.7;
+}
+
+.location-icon {
+  margin-right: 0.5rem;
+}
+
+.sensor-detail-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.sensor-current-value {
+  text-align: center;
+  padding: 1.5rem;
+  background-color: rgba(0, 0, 0, 0.03);
+  border-radius: 12px;
+}
+
+.current-value-label {
+  font-size: 1rem;
+  color: var(--color-text);
+  margin-bottom: 0.5rem;
+}
+
+.current-value {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.value-number {
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--color-primary);
+}
+
+.value-unit {
+  font-size: 1.5rem;
+  margin-left: 0.5rem;
+  color: var(--color-text);
+  opacity: 0.7;
+}
+
+.value-range-bar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.range-bar {
+  flex-grow: 1;
+  height: 8px;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  position: relative;
+}
+
+.range-indicator {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background-color: var(--color-primary);
+  border-radius: 50%;
+  transform: translateX(-50%) translateY(-4px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.range-min, .range-max {
+  font-size: 0.9rem;
+  color: var(--color-text);
+  opacity: 0.7;
+}
+
+.sensor-chart-container {
+  margin-bottom: 1rem;
+}
+
+.sensor-chart-container h3 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: var(--color-text);
+}
+
+.chart-wrapper {
+  height: 300px;
+  width: 100%;
+}
+
+.sensor-stats {
+  margin-bottom: 1.5rem;
+}
+
+.sensor-stats h3 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: var(--color-text);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.stat-item {
+  padding: 1rem;
+  background-color: rgba(0, 0, 0, 0.03);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-bottom: 0.3rem;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: var(--color-text);
+  opacity: 0.7;
+}
+
+.sensor-info h3 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: var(--color-text);
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.info-item {
+  padding: 0.5rem 0;
+}
+
+.info-label {
+  font-size: 0.9rem;
+  color: var(--color-text);
+  opacity: 0.7;
+  margin-bottom: 0.2rem;
+}
+
+.info-value {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.sensor-detail-footer {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.action-button {
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  background-color: var(--color-primary);
+  color: white;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.action-button:hover {
+  background-color: var(--color-info);
+  transform: translateY(-2px);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Modo oscuro */
+.dark-mode .sensor-detail-container {
+  background-color: var(--color-light);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .sensor-detail-header {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .close-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .sensor-current-value,
+.dark-mode .stat-item {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.dark-mode .range-bar {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .sensor-detail-footer {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes pulse {
+  0% { opacity: 0.8; }
+  50% { opacity: 1; }
+  100% { opacity: 0.8; }
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .sensor-detail-container {
+    width: 95%;
+    padding: 1.5rem;
+    max-height: 85vh;
+  }
+  
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .value-number {
+    font-size: 2.5rem;
+  }
+  
+  .chart-wrapper {
+    height: 250px;
+  }
+  
+  .sensor-detail-footer {
+    flex-direction: column;
+  }
+  
+  .action-button {
+    width: 100%;
+  }
+}

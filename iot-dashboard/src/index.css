@@ -1,0 +1,121 @@
+:root {
+  /* Paleta de colores vibrante pero armoniosa */
+  --color-primary: #3498db;      /* Azul */
+  --color-secondary: #2ecc71;    /* Verde */
+  --color-accent: #e74c3c;       /* Rojo */
+  --color-warning: #f39c12;      /* Naranja */
+  --color-info: #9b59b6;         /* Púrpura */
+  --color-background: #ecf0f1;   /* Gris claro */
+  --color-dark: #34495e;         /* Azul oscuro */
+  --color-light: #ffffff;        /* Blanco */
+  --color-text: #2c3e50;         /* Casi negro */
+
+  font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color: var(--color-text);
+  background-color: var(--color-background);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: var(--color-primary);
+  text-decoration: inherit;
+}
+a:hover {
+  color: var(--color-info);
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  min-width: 320px;
+  overflow-x: hidden; /* Prevenir scroll horizontal */
+}
+
+body {
+  background-color: var(--color-background);
+  position: relative;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: var(--color-primary);
+  color: var(--color-light);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+button:hover {
+  background-color: var(--color-info);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto var(--color-accent);
+}
+
+/* Animaciones para darle más vida a la interfaz */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s infinite;
+}
+
+/* Transiciones suaves para elementos interactivos */
+.transition-all {
+  transition: all 0.3s ease;
+}
+
+/* Estilos para las tarjetas de sensores */
+.sensor-card {
+  background-color: var(--color-light);
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  margin: 1.25rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.sensor-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para los gráficos */
+.chart-container {
+  background-color: var(--color-light);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  margin: 1.25rem 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}

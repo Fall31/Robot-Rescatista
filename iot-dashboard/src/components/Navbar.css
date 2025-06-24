@@ -1,0 +1,246 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px; /* Altura adaptada para el indicador */
+  z-index: 1000;
+  background: rgba(236, 240, 241, 0.95); /* Fondo claro para modo claro (variable) */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  padding-bottom: 5px; /* Padding inferior para el indicador */
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  height: 100%;
+  position: relative; /* Añadido para posicionamiento del menú */
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--color-primary); /* Color primario variable según tema */
+  font-weight: 700;
+  font-size: 1.3rem;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  height: 100%;
+  padding-left: 0.5rem;
+  padding-bottom: 5px; /* Ajustado para alinearse con la altura */
+  transition: all 0.3s ease;
+}
+
+.navbar-logo:hover {
+  color: #4dabf7; /* Azul más claro al pasar el mouse */
+}
+
+.navbar-logo:hover .logo-icon {
+  color: #4dabf7; /* Azul más claro al pasar el mouse */
+}
+
+.logo-icon {
+  font-size: 1.8rem;
+  margin-right: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary); /* Color primario variable según tema */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.nav-items {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 2rem;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-items li {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: calc(100% - 5px); /* Ajustada la altura para dejar espacio para el indicador */
+  padding-top: 5px; /* Añadido padding superior para equilibrar */
+}
+
+.nav-items li a {
+  text-decoration: none;
+  color: var(--color-text); /* Color de texto que coincida con el tema */
+  font-weight: 500;
+  font-size: 1.1rem;
+  padding: 0.5rem 0; /* Padding ajustado */
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.nav-items li a:hover {
+  color: var(--color-primary);
+}
+
+.nav-items li.active a {
+  color: var(--color-primary); /* Color primario para coherencia */
+  font-weight: 700; /* Más negrita */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.nav-items li.active::after {
+  content: '';
+  position: absolute;
+  bottom: 5px; /* Posicionado correctamente dentro del navbar */
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: var(--color-primary); /* Color primario variable según tema */
+  border-radius: 1.5px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.theme-toggle-nav {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  color: var(--color-text); /* Color coherente con el tema */
+  transition: all 0.3s ease;
+}
+
+.theme-toggle-nav:hover {
+  transform: rotate(30deg);
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.mobile-menu-button {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+  cursor: pointer;
+}
+
+.mobile-menu-button span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: var(--color-primary);
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+/* Modo oscuro */
+.app-container.dark-mode .navbar {
+  background-color: rgba(23, 32, 42, 0.98); /* Fondo oscuro para modo oscuro */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+}
+
+.app-container.dark-mode .navbar-logo {
+  color: #4da6ff;
+}
+
+.app-container.dark-mode .nav-items li.active a {
+  color: #61dafb; /* Azul más claro y brillante para modo oscuro */
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.app-container.dark-mode .nav-items li.active::after {
+  background-color: #4dabf7; /* Azul más claro para modo oscuro */
+  box-shadow: 0 1px 3px rgba(77, 171, 247, 0.5);
+  bottom: 5px; /* Mismo posicionamiento que en modo claro */
+}
+
+.app-container.dark-mode .nav-items li a,
+.app-container.dark-mode .theme-toggle-nav {
+  color: #ffffff; /* Color blanco para texto en modo oscuro */
+}
+
+.app-container.dark-mode .mobile-menu-button span {
+  background-color: var(--color-light);
+}
+
+.app-container.dark-mode .nav-items li a:hover {
+  color: #4da6ff;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {  .navbar-menu {
+    position: fixed;
+    top: 80px; /* Ajustado para la altura del navbar */
+    left: 0;
+    width: 100%;
+    background-color: rgba(236, 240, 241, 0.95); /* Fondo claro coherente */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    clip-path: circle(0px at 90% -10%);
+    -webkit-clip-path: circle(0px at 90% -10%);
+    transition: all 0.3s ease-out;
+    pointer-events: none;
+  }
+  
+  .navbar-menu.active {
+    clip-path: circle(1500px at 90% -10%);
+    -webkit-clip-path: circle(1500px at 90% -10%);
+    pointer-events: all;
+  }
+  
+  .nav-items {
+    flex-direction: column;
+    gap: 0;
+    padding: 2rem 0;
+  }
+    .nav-items li {
+    width: 100%;
+    text-align: center;
+    padding: 1.5rem 0;
+    height: auto; /* Altura automática en modo móvil */
+    position: relative;
+    margin-bottom: 5px; /* Añadimos margen inferior para el indicador */
+  }
+  .nav-items li.active::after {
+    bottom: 0; /* En móvil posicionamos la línea en la parte inferior */
+    width: 50%; /* Ancho más pequeño en móvil para un aspecto más elegante */
+    margin: 0 auto; /* Centrado */
+  }
+  
+  .mobile-menu-button {
+    display: flex;
+    z-index: 1001;
+  }
+  
+  .mobile-menu-button.active span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+  }
+  
+  .mobile-menu-button.active span:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .mobile-menu-button.active span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+  }
+  .app-container.dark-mode .navbar-menu {
+    background-color: rgba(23, 32, 42, 0.95); /* Fondo oscuro para modo oscuro */
+  }
+}

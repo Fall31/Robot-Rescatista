@@ -1,0 +1,539 @@
+.sensor-card {
+  border-radius: 15px;
+  padding: 1.5rem;
+  margin: 0;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  color: var(--color-text);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  user-select: none;
+  flex: 1;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-light);
+  border-top: 5px solid var(--color-primary);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(209, 213, 219, 0.3);
+}
+
+.sensor-card.status-normal {
+  border-top-color: var(--color-secondary);
+  background-image: linear-gradient(to bottom, rgba(46, 204, 113, 0.05) 0%, rgba(255, 255, 255, 1) 80%);
+}
+
+.sensor-card.status-warning {
+  border-top-color: var(--color-warning);
+  background-image: linear-gradient(to bottom, rgba(243, 156, 18, 0.05) 0%, rgba(255, 255, 255, 1) 80%);
+}
+
+.sensor-card.status-critical {
+  border-top-color: var(--color-accent);
+  background-image: linear-gradient(to bottom, rgba(231, 76, 60, 0.05) 0%, rgba(255, 255, 255, 1) 80%);
+}
+
+.sensor-card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12), 0 5px 15px rgba(52, 152, 219, 0.15);
+  border-top-width: 6px;
+  border-radius: 18px;
+}
+
+.sensor-status-indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.7), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.sensor-card.status-critical .sensor-status-indicator {
+  opacity: 1;
+  height: 6px;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.sensor-header {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 1.2rem;
+  justify-content: space-between;
+  position: relative;
+}
+
+.sensor-title-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.sensor-icon {
+  font-size: 2rem;
+  margin-right: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.03);
+  background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.4));
+  padding: 0.5rem;
+  border-radius: 14px;
+  width: 3rem;
+  height: 3rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08), inset 0 -2px 5px rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  transition: all 0.3s ease;
+  transform: rotate(-3deg);
+}
+
+.sensor-card:hover .sensor-icon {
+  transform: rotate(0deg) scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1), inset 0 -2px 5px rgba(0, 0, 0, 0.03);
+}
+
+.sensor-title {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-text);
+}
+
+.sensor-location {
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+  color: var(--color-text);
+  opacity: 0.7;
+  margin-top: 0.3rem;
+}
+
+.location-icon {
+  margin-right: 0.3rem;
+  font-size: 0.8rem;
+}
+
+.sensor-status-badge {
+  padding: 0.35rem 0.9rem;
+  border-radius: 30px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: white;
+  text-transform: uppercase;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+  letter-spacing: 0.5px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.sensor-status-badge.status-normal {
+  background: linear-gradient(135deg, var(--color-secondary), #27ae60);
+}
+
+.sensor-status-badge.status-warning {
+  background: linear-gradient(135deg, var(--color-warning), #e67e22);
+}
+
+.sensor-status-badge.status-critical {
+  background: linear-gradient(135deg, var(--color-accent), #c0392b);
+  animation: pulse-critical 1.5s infinite alternate;
+}
+
+@keyframes pulse-critical {
+  0% {
+    box-shadow: 0 3px 6px rgba(231, 76, 60, 0.3);
+  }
+  100% {
+    box-shadow: 0 3px 15px rgba(231, 76, 60, 0.8);
+  }
+}
+
+.badge-pulse {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.8);
+  display: none;
+}
+
+.sensor-status-badge.status-critical .badge-pulse {
+  display: block;
+  animation: pulse-badge 1.5s infinite;
+}
+
+@keyframes pulse-badge {
+  0% {
+    transform: translateY(-50%) scale(0.8);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-50%) scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-50%) scale(0.8);
+    opacity: 0.6;
+  }
+}
+
+.sensor-value-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.sensor-value {
+  display: flex;
+  align-items: baseline;
+}
+
+.value {
+  font-size: 2.8rem;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--color-dark);
+  margin-right: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.sensor-card:hover .value {
+  transform: scale(1.01);
+}
+
+.unit {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-dark);
+  opacity: 0.9;
+}
+
+.sensor-trend {
+  font-size: 1.8rem;
+}
+
+.trend-up {
+  color: var(--color-secondary);
+}
+
+.trend-down {
+  color: var(--color-accent);
+}
+
+.sensor-chart {
+  flex: 1;
+  margin-bottom: 1.5rem;
+  position: relative;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 12px;
+  padding: 1rem;
+  min-height: 180px;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(200, 200, 200, 0.3);
+  overflow: hidden;
+}
+
+.sensor-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-top: 0.5rem;
+}
+
+.sensor-range {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.range-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.range-label {
+  font-size: 0.8rem;
+  color: var(--color-dark);
+  margin-bottom: 0.2rem;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.range-value {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-dark);
+}
+
+.sensor-timestamp {
+  font-size: 0.85rem;
+  color: var(--color-text);
+  opacity: 0.7;
+}
+
+.time-icon {
+  margin-right: 0.3rem;
+}
+
+.sensor-action {
+  display: flex;
+  justify-content: center;
+}
+
+.detail-btn {
+  padding: 0.8rem 1.5rem;
+  background: linear-gradient(135deg, var(--color-primary), #2980b9);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  box-shadow: 0 4px 6px rgba(41, 128, 185, 0.2);
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 0.9rem;
+}
+
+.detail-btn:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: 0.5s;
+}
+
+.detail-btn:hover {
+  background: linear-gradient(135deg, #2980b9, var(--color-primary));
+  box-shadow: 0 6px 12px rgba(41, 128, 185, 0.3);
+  transform: translateY(-2px);
+}
+
+.detail-btn:hover:before {
+  left: 100%;
+}
+
+.btn-text {
+  margin-right: 6px;
+}
+
+.btn-icon {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  margin-left: 6px;
+  transition: all 0.3s ease;
+}
+
+.detail-btn:hover .btn-icon {
+  transform: scale(1.2);
+  opacity: 1;
+}
+
+/* Efectos adicionales para el modo claro */
+@keyframes card-glow {
+  0% {
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+  50% {
+    box-shadow: 0 12px 28px rgba(52, 152, 219, 0.12), 0 2px 8px rgba(52, 152, 219, 0.1);
+  }
+  100% {
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+}
+
+.sensor-card {
+  position: relative;
+  z-index: 1;
+}
+
+.sensor-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8), transparent 70%);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+  border-radius: 15px;
+}
+
+.sensor-card:hover::before {
+  opacity: 1;
+}
+
+/* Animación para tarjetas en estado crítico */
+.sensor-card.status-critical {
+  animation: card-glow 2s infinite;
+}
+
+/* Mejora para las tendencias */
+.trend-up, .trend-down {
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.2rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  width: 2.5rem;
+  height: 2.5rem;
+  transition: transform 0.3s ease;
+}
+
+.sensor-card:hover .trend-up {
+  transform: translateY(-3px) scale(1.05);
+}
+
+.sensor-card:hover .trend-down {
+  transform: translateY(3px) scale(1.05);
+}
+
+/* Efectos para el título */
+.sensor-title {
+  position: relative;
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.sensor-card:hover .sensor-title {
+  transform: scale(1.02);
+}
+
+/* Mejora para el timestamp */
+.sensor-timestamp {
+  background: rgba(255, 255, 255, 0.6);
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.sensor-card:hover .sensor-timestamp {
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08);
+}
+
+/* Reglas adicionales para mejorar la legibilidad */
+.sensor-card * {
+  text-shadow: none !important;
+}
+
+.sensor-card {
+  color: var(--color-dark);
+}
+
+.sensor-title, .sensor-location {
+  color: var(--color-dark);
+}
+
+.app-container.dark-mode .sensor-card {
+  color: #ffffff;
+}
+
+.app-container.dark-mode .sensor-title, 
+.app-container.dark-mode .sensor-location {
+  color: #ffffff;
+}
+
+/* Aseguramos que todos los textos sean legibles */
+.app-container.dark-mode .sensor-card .sensor-chart text {
+  fill: #ffffff !important;
+  color: #ffffff !important;
+}
+
+.sensor-card .sensor-chart text {
+  fill: var(--color-dark) !important;
+  color: var(--color-dark) !important;
+  font-weight: bold !important;
+}
+
+/* Modo oscuro */
+.app-container.dark-mode .sensor-card {
+  background-color: rgba(30, 30, 50, 0.9);
+  background-image: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.app-container.dark-mode .sensor-card.status-normal,
+.app-container.dark-mode .sensor-card.status-warning,
+.app-container.dark-mode .sensor-card.status-critical {
+  background-image: none;
+}
+
+.app-container.dark-mode .sensor-icon {
+  background-color: rgba(255, 255, 255, 0.1);
+  background-image: none;
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.app-container.dark-mode .sensor-chart {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.app-container.dark-mode .value {
+  color: #61dafb;
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
+}
+
+.app-container.dark-mode .unit {
+  color: #ffffff;
+  opacity: 0.9;
+}
+
+.app-container.dark-mode .range-label {
+  color: #ffffff;
+  opacity: 0.9;
+}
+
+.app-container.dark-mode .range-value {
+  color: #ffffff;
+  opacity: 0.9;
+}
+
+.app-container.dark-mode .sensor-timestamp {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.app-container.dark-mode .trend-up, 
+.app-container.dark-mode .trend-down {
+  background: rgba(255, 255, 255, 0.15);
+}
